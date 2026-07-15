@@ -1,0 +1,189 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Admin",
+      "email": "contact.grahicsworld@gmail.com",
+      "password": "admin",
+      "role": "admin",
+      "phone": "+919876543210",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 12000,
+      "commissionRate": 100,
+      "tenantId": "t-default",
+      "companyId": "c-default"
+    },
+    {
+      "id": "u-1783937215852-wjdr",
+      "name": "Alice Smith",
+      "email": "alice@acme-ent.com",
+      "password": "$2b$10$wFh/s1yKK0kIZVg1PbNSiuLVB79jgrYrvulzEEj.FvGQ/oYPkeAJ.",
+      "role": "MAIN_ADMIN",
+      "status": "active",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "phone": "",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 25000,
+      "commissionRate": 200,
+      "monthlyTarget": 10
+    },
+    {
+      "id": "u-1784037077811-mrw6",
+      "name": "nandu",
+      "email": "cppl@gmail.com",
+      "password": "$2b$10$qior3FvSDuPy9SHGMhTDoOgYszhcfNaPn1k6TnWTazaFrxTeyAF5C",
+      "role": "MAIN_ADMIN",
+      "status": "active",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "phone": "",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 25000,
+      "commissionRate": 200,
+      "monthlyTarget": 10
+    }
+  ],
+  "leads": [],
+  "callLogs": [],
+  "supportTickets": [],
+  "autoCallingConfig": {
+    "delaySeconds": 5,
+    "enabled": true
+  },
+  "backups": [],
+  "attendance": [],
+  "leaves": [],
+  "tasks": [],
+  "companyHolidays": [],
+  "tenants": [
+    {
+      "tenantId": "t-default",
+      "companyName": "Default Company",
+      "companyId": "c-default",
+      "status": "active",
+      "createdAt": "2026-07-13T09:59:46.231Z",
+      "updatedAt": "2026-07-13T09:59:46.231Z"
+    },
+    {
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "companyName": "Acme Enterprise LLC",
+      "companyEmail": "contact@acme-ent.com",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-13T10:06:55.852Z",
+      "trialEnd": "2026-07-20T10:06:55.981Z",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "updatedAt": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "companyName": "cppl",
+      "companyEmail": "cppl@gmail.com",
+      "companyPhone": "8962613461",
+      "companySize": "1-10",
+      "industry": "Information Technology",
+      "country": "India",
+      "timeZone": "IST (UTC+05:30)",
+      "currency": "INR",
+      "setupCompleted": false,
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-14T13:51:17.811Z",
+      "trialEnd": "2026-07-21T13:51:17.895Z",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "updatedAt": "2026-07-14T13:51:17.811Z"
+    }
+  ],
+  "reports": [],
+  "payrollOverrides": [],
+  "releasedSalaries": [],
+  "salaryRules": [],
+  "improvementInstructions": [],
+  "subAdminComms": [],
+  "testingConfig": {
+    "expiryDate": "2026-08-12",
+    "isActive": true
+  },
+  "recoveryConfig": {
+    "securityQuestion": "elephant ke kitne daatt hote hai",
+    "securityAnswer": "0000",
+    "adminBackupEmail": "contact.grahicsworld@gmail.com",
+    "alertWhatsapp": "9301056006",
+    "alertEmail": "ipgroup2002@gmail.com"
+  },
+  "companies": [
+    {
+      "companyId": "c-1783937215852-wjdr",
+      "companyName": "Acme Enterprise LLC",
+      "companyEmail": "contact@acme-ent.com",
+      "tenantId": "t-1783937215852-wjdr",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-13T10:06:55.852Z",
+      "trialEnd": "2026-07-20T10:06:55.981Z",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "updatedAt": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "companyId": "c-1784037077811-mrw6",
+      "companyName": "cppl",
+      "companyEmail": "cppl@gmail.com",
+      "companyPhone": "8962613461",
+      "companySize": "1-10",
+      "industry": "Information Technology",
+      "country": "India",
+      "timeZone": "IST (UTC+05:30)",
+      "currency": "INR",
+      "setupCompleted": false,
+      "tenantId": "t-1784037077811-mrw6",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-14T13:51:17.811Z",
+      "trialEnd": "2026-07-21T13:51:17.895Z",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "updatedAt": "2026-07-14T13:51:17.811Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "audit-1783937215981-6ujt-1",
+      "action": "COMPANY_CREATED",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "details": "Company 'Acme Enterprise LLC' registered successfully with Tenant ID t-1783937215852-wjdr.",
+      "timestamp": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "id": "audit-1783937215981-ocz9-2",
+      "action": "MAIN_ADMIN_CREATED",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "details": "Main Admin User 'Alice Smith' (ID: u-1783937215852-wjdr) created for Company 'Acme Enterprise LLC'.",
+      "timestamp": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "id": "audit-1784037077895-iqgb-1",
+      "action": "COMPANY_CREATED",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "details": "Company 'cppl' registered successfully with Tenant ID t-1784037077811-mrw6.",
+      "timestamp": "2026-07-14T13:51:17.811Z"
+    },
+    {
+      "id": "audit-1784037077895-44jz-2",
+      "action": "MAIN_ADMIN_CREATED",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "details": "Main Admin User 'nandu' (ID: u-1784037077811-mrw6) created for Company 'cppl'.",
+      "timestamp": "2026-07-14T13:51:17.811Z"
+    }
+  ]
+}

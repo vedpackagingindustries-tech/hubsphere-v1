@@ -1,0 +1,335 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Admin",
+      "email": "contact.grahicsworld@gmail.com",
+      "password": "admin",
+      "role": "admin",
+      "phone": "+919876543210",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 12000,
+      "commissionRate": 100,
+      "tenantId": "t-default",
+      "companyId": "c-default"
+    },
+    {
+      "id": "u-1783937215852-wjdr",
+      "name": "Alice Smith",
+      "email": "alice@acme-ent.com",
+      "password": "$2b$10$wFh/s1yKK0kIZVg1PbNSiuLVB79jgrYrvulzEEj.FvGQ/oYPkeAJ.",
+      "role": "MAIN_ADMIN",
+      "status": "active",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "phone": "",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 25000,
+      "commissionRate": 200,
+      "monthlyTarget": 10
+    },
+    {
+      "id": "u-1784037077811-mrw6",
+      "name": "nandu",
+      "email": "cppl@gmail.com",
+      "password": "$2b$10$qior3FvSDuPy9SHGMhTDoOgYszhcfNaPn1k6TnWTazaFrxTeyAF5C",
+      "role": "MAIN_ADMIN",
+      "status": "active",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "phone": "",
+      "department": "All",
+      "position": "Main Admin",
+      "salaryBase": 25000,
+      "commissionRate": 200,
+      "monthlyTarget": 10
+    }
+  ],
+  "leads": [],
+  "callLogs": [],
+  "supportTickets": [],
+  "autoCallingConfig": {
+    "delaySeconds": 5,
+    "enabled": true
+  },
+  "backups": [],
+  "attendance": [],
+  "leaves": [],
+  "tasks": [],
+  "companyHolidays": [],
+  "tenants": [
+    {
+      "tenantId": "t-default",
+      "companyName": "Default Company",
+      "companyId": "c-default",
+      "status": "active",
+      "createdAt": "2026-07-13T09:59:46.231Z",
+      "updatedAt": "2026-07-13T09:59:46.231Z"
+    },
+    {
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "companyName": "Acme Enterprise LLC",
+      "companyEmail": "contact@acme-ent.com",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-13T10:06:55.852Z",
+      "trialEnd": "2026-07-20T10:06:55.981Z",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "updatedAt": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "companyName": "cppl",
+      "companyEmail": "cppl@gmail.com",
+      "companyPhone": "8962613461",
+      "companySize": "1-10",
+      "industry": "Information Technology",
+      "country": "India",
+      "timeZone": "IST (UTC+05:30)",
+      "currency": "INR",
+      "setupCompleted": false,
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-14T13:51:17.811Z",
+      "trialEnd": "2026-07-21T13:51:17.895Z",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "updatedAt": "2026-07-14T13:51:17.811Z"
+    }
+  ],
+  "reports": [],
+  "payrollOverrides": [],
+  "releasedSalaries": [],
+  "salaryRules": [
+    {
+      "id": "rule_late_arrival",
+      "name": "Late Arrival Pay Cut (विलंब आगमन कटौती)",
+      "description": "After 10:18 AM, deducts 1 hour of pay per 10 minutes late (max 9 hours) / सुबह 10:18 बजे के बाद, प्रत्येक 10 मिनट की देरी पर 1 घंटे की सैलरी की कटौती (अधिकतम 9 घंटे की कटौती)",
+      "type": "LateDeduction",
+      "value": 10,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_sunday_sandwich",
+      "name": "Sunday Sandwich Rule (सैंडविच नियम)",
+      "description": "If Saturday or Monday is leave/absent, Sunday is deducted (unpaid) / यदि शनिवार या सोमवार को छुट्टी/अनुपस्थिति है, तो रविवार की कटौती होगी (बिना वेतन)",
+      "type": "SandwichDeduction",
+      "value": 1,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_half_day",
+      "name": "Half Day Leave Deduction (हाफ डे कटौती)",
+      "description": "Work between 4.0 and 9.0 hours counts as half day, deducting 0.5 day salary / 4.0 से 9.0 घंटे काम करने पर हाफ डे माना जाएगा, जिससे 0.5 दिन की कटौती होगी",
+      "type": "HalfDayDeduction",
+      "value": 0.5,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_absent",
+      "name": "Short Logout Absent Rule (शॉर्ट लॉगआउट नियम)",
+      "description": "Work less than 4.0 hours counts as absent (1 day deduction) / 4.0 घंटे से कम काम करने पर अनुपस्थित माना जाएगा (1 दिन की कटौती)",
+      "type": "AbsentDeduction",
+      "value": 1,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_paid_leaves",
+      "name": "Monthly Paid Leaves Limit (सवैतनिक अवकाश सीमा)",
+      "description": "First 2 approved leaves are paid; further are unpaid / पहले 2 स्वीकृत अवकाश सवैतनिक हैं; आगे के अवकाश अवकाश अवैतनिक (बिना वेतन) होंगे",
+      "type": "PaidLeavesLimit",
+      "value": 2,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_performance_cut",
+      "name": "Low Performance Salary Cut (कम प्रदर्शन कटौती)",
+      "description": "Under 80% task/sales performance, basic salary scales down by performance % / 80% से कम प्रदर्शन होने पर, बेसिक सैलरी प्रदर्शन प्रतिशत के अनुसार घट जाएगी",
+      "type": "PerformanceCut",
+      "value": 80,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true
+    },
+    {
+      "id": "rule_late_arrival_t-1784037077811-mrw6",
+      "name": "Late Arrival Pay Cut (विलंब आगमन कटौती)",
+      "description": "After 10:18 AM, deducts 1 hour of pay per 10 minutes late (max 9 hours) / सुबह 10:18 बजे के बाद, प्रत्येक 10 मिनट की देरी पर 1 घंटे की सैलरी की कटौती (अधिकतम 9 घंटे की कटौती)",
+      "type": "LateDeduction",
+      "value": 10,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    },
+    {
+      "id": "rule_sunday_sandwich_t-1784037077811-mrw6",
+      "name": "Sunday Sandwich Rule (सैंडविच नियम)",
+      "description": "If Saturday or Monday is leave/absent, Sunday is deducted (unpaid) / यदि शनिवार या सोमवार को छुट्टी/अनुपस्थिति है, तो रविवार की कटौती होगी (बिना वेतन)",
+      "type": "SandwichDeduction",
+      "value": 1,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    },
+    {
+      "id": "rule_half_day_t-1784037077811-mrw6",
+      "name": "Half Day Leave Deduction (हाफ डे कटौती)",
+      "description": "Work between 4.0 and 9.0 hours counts as half day, deducting 0.5 day salary / 4.0 से 9.0 घंटे काम करने पर हाफ डे माना जाएगा, जिससे 0.5 दिन की कटौती होगी",
+      "type": "HalfDayDeduction",
+      "value": 0.5,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    },
+    {
+      "id": "rule_absent_t-1784037077811-mrw6",
+      "name": "Short Logout Absent Rule (शॉर्ट लॉगआउट नियम)",
+      "description": "Work less than 4.0 hours counts as absent (1 day deduction) / 4.0 घंटे से कम काम करने पर अनुपस्थित माना जाएगा (1 दिन की कटौती)",
+      "type": "AbsentDeduction",
+      "value": 1,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    },
+    {
+      "id": "rule_paid_leaves_t-1784037077811-mrw6",
+      "name": "Monthly Paid Leaves Limit (सवैतनिक अवकाश सीमा)",
+      "description": "First 2 approved leaves are paid; further are unpaid / पहले 2 स्वीकृत अवकाश सवैतनिक हैं; आगे के अवकाश अवकाश अवैतनिक (बिना वेतन) होंगे",
+      "type": "PaidLeavesLimit",
+      "value": 2,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    },
+    {
+      "id": "rule_performance_cut_t-1784037077811-mrw6",
+      "name": "Low Performance Salary Cut (कम प्रदर्शन कटौती)",
+      "description": "Under 80% task/sales performance, basic salary scales down by performance % / 80% से कम प्रदर्शन होने पर, बेसिक सैलरी प्रदर्शन प्रतिशत के अनुसार घट जाएगी",
+      "type": "PerformanceCut",
+      "value": 80,
+      "segment": "All",
+      "staffId": "All",
+      "enabled": true,
+      "systemRule": true,
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6"
+    }
+  ],
+  "improvementInstructions": [],
+  "subAdminComms": [],
+  "testingConfig": {
+    "expiryDate": "2026-08-12",
+    "isActive": true
+  },
+  "recoveryConfig": {
+    "securityQuestion": "elephant ke kitne daatt hote hai",
+    "securityAnswer": "0000",
+    "adminBackupEmail": "contact.grahicsworld@gmail.com",
+    "alertWhatsapp": "9301056006",
+    "alertEmail": "ipgroup2002@gmail.com"
+  },
+  "companies": [
+    {
+      "companyId": "c-1783937215852-wjdr",
+      "companyName": "Acme Enterprise LLC",
+      "companyEmail": "contact@acme-ent.com",
+      "tenantId": "t-1783937215852-wjdr",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-13T10:06:55.852Z",
+      "trialEnd": "2026-07-20T10:06:55.981Z",
+      "createdAt": "2026-07-13T10:06:55.852Z",
+      "updatedAt": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "companyId": "c-1784037077811-mrw6",
+      "companyName": "cppl",
+      "companyEmail": "cppl@gmail.com",
+      "companyPhone": "8962613461",
+      "companySize": "1-10",
+      "industry": "Information Technology",
+      "country": "India",
+      "timeZone": "IST (UTC+05:30)",
+      "currency": "INR",
+      "setupCompleted": false,
+      "tenantId": "t-1784037077811-mrw6",
+      "status": "trial",
+      "trialDays": 7,
+      "trialStart": "2026-07-14T13:51:17.811Z",
+      "trialEnd": "2026-07-21T13:51:17.895Z",
+      "createdAt": "2026-07-14T13:51:17.811Z",
+      "updatedAt": "2026-07-14T13:51:17.811Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "audit-1783937215981-6ujt-1",
+      "action": "COMPANY_CREATED",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "details": "Company 'Acme Enterprise LLC' registered successfully with Tenant ID t-1783937215852-wjdr.",
+      "timestamp": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "id": "audit-1783937215981-ocz9-2",
+      "action": "MAIN_ADMIN_CREATED",
+      "tenantId": "t-1783937215852-wjdr",
+      "companyId": "c-1783937215852-wjdr",
+      "details": "Main Admin User 'Alice Smith' (ID: u-1783937215852-wjdr) created for Company 'Acme Enterprise LLC'.",
+      "timestamp": "2026-07-13T10:06:55.852Z"
+    },
+    {
+      "id": "audit-1784037077895-iqgb-1",
+      "action": "COMPANY_CREATED",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "details": "Company 'cppl' registered successfully with Tenant ID t-1784037077811-mrw6.",
+      "timestamp": "2026-07-14T13:51:17.811Z"
+    },
+    {
+      "id": "audit-1784037077895-44jz-2",
+      "action": "MAIN_ADMIN_CREATED",
+      "tenantId": "t-1784037077811-mrw6",
+      "companyId": "c-1784037077811-mrw6",
+      "details": "Main Admin User 'nandu' (ID: u-1784037077811-mrw6) created for Company 'cppl'.",
+      "timestamp": "2026-07-14T13:51:17.811Z"
+    }
+  ],
+  "tenantTestingConfigs": {}
+}
