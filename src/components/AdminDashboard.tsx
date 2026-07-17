@@ -5138,7 +5138,19 @@ export default function AdminDashboard({ user, onLogout, onUserUpdate }: AdminDa
               users={allUsers} 
             />
           )}
-
+{/* TAB: REPORTS & BI */}
+{activeTab === 'reports' && (
+  <EnterpriseReportsWorkspace
+    leads={leads}
+    allUsers={allUsers}
+    callLogs={callLogs}
+    attendanceLogs={attendanceLogs}
+    leaveApplications={leaveApplications}
+    payrollReport={payrollReport}
+    companyHolidays={companyHolidays}
+    tasks={tasks}
+  />
+)}
           {/* TAB: HRM MANAGEMENT */}
           {activeTab === 'hrm' && (
             <div className="space-y-6">
