@@ -4131,7 +4131,7 @@ export default function AdminDashboard({ user, onLogout, onUserUpdate }: AdminDa
 
                 {/* COLUMN 2: ADD STAFF & ADMIN / SEGMENT BOARD */}
                 <div className="space-y-6">
-                  {(user.id === 'u-admin' || user.role === 'sub-admin') && (
+                  {(user.role === 'admin' || user.role === 'sub-admin') && (
                     <div className="bg-[#111622] border border-[#1f2635] p-5 rounded-2xl h-fit space-y-4 text-left">
                       <div className="flex items-center gap-2 text-white font-bold text-sm border-b border-[#1e2635] pb-3">
                         <UserPlus className="w-5 h-5 text-[#f97316]" />

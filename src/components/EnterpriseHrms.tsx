@@ -663,9 +663,9 @@ export default function EnterpriseHrms({ currentUser, triggerRefresh }: Enterpri
     'u-456': 'Main Admin (u-admin)'
   };
 
-  const getBranch = (emp: any) => emp.branch || branchMap[emp.id] || 'Noida Tech Center';
+  const getBranch = (emp: any) => emp.branch || branchMap[emp.id] || (emp.role === 'admin' ? 'Delhi HQ' : 'Noida Tech Center');
   const getEmpType = (emp: any) => emp.employmentType || empTypeMap[emp.id] || 'Full-time';
-  const getManager = (emp: any) => emp.reportingManager || managerMap[emp.id] || 'Siddharth Roy';
+  const getManager = (emp: any) => emp.reportingManager || managerMap[emp.id] || (emp.role === 'admin' ? 'Board of Directors' : 'Siddharth Roy');
 
   // Filtered employees for Employee Directory
   const processedEmployees = users.filter(emp => {
@@ -1355,7 +1355,7 @@ export default function EnterpriseHrms({ currentUser, triggerRefresh }: Enterpri
               {/* Level 3: Direct Reports & Subordinates */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full justify-items-center">
                 {users.map(emp => {
-                  if (emp.id === 'u-admin') return null;
+                  if (emp.id === 'u-admin' || emp.role === 'admin') return null;
                   const initial = emp.name.charAt(0).toUpperCase();
                   const managerName = emp.id === 'u-456' ? 'Ananya Iyer' : 'Siddharth Roy';
                   
@@ -2014,24 +2014,29 @@ export default function EnterpriseHrms({ currentUser, triggerRefresh }: Enterpri
               {active360Tab === 'emergency' && (
                 <div className="bg-[#111622] border border-[#1f2635] p-6 rounded-2xl space-y-4">
                   <h4 className="text-xs font-black uppercase text-gray-400 tracking-wider">Emergency Contacts & Next of Kin</h4>
-                  <div className="grid grid-cols-2 gap-4 text-xs">
-                    <div>
-                      <span className="text-gray-400 block">Contact Person</span>
-                      <p className="text-white font-bold mt-1">{emergencyContacts[selectedEmp.id]?.name || 'Sanjay Sharma'}</p>
-                    </div>
-                    <div>
-                      <span className="text-gray-400 block">Relationship</span>
-                      <p className="text-white font-bold mt-1">{emergencyContacts[selectedEmp.id]?.relation || 'Father'}</p>
-                    </div>
-                    <div>
-                      <span className="text-gray-400 block">Emergency Mobile</span>
-                      <p className="text-white font-mono font-bold mt-1">{emergencyContacts[selectedEmp.id]?.phone || '+919876543211'}</p>
-                    </div>
-                    <div>
-                      <span className="text-gray-400 block">Kin Email Address</span>
-                      <p className="text-white font-bold mt-1">{emergencyContacts[selectedEmp.id]?.email || 'sanjay@gmail.com'}</p>
-                    </div>
-                  </div>
+                  {(() => {
+                    const contact = emergencyContacts[selectedEmp.id] || (selectedEmp.role === 'admin' ? emergencyContacts['u-admin'] : null);
+                    return (
+                      <div className="grid grid-cols-2 gap-4 text-xs">
+                        <div>
+                          <span className="text-gray-400 block">Contact Person</span>
+                          <p className="text-white font-bold mt-1">{contact?.name || 'Sanjay Sharma'}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block">Relationship</span>
+                          <p className="text-white font-bold mt-1">{contact?.relation || 'Father'}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block">Emergency Mobile</span>
+                          <p className="text-white font-mono font-bold mt-1">{contact?.phone || '+919876543211'}</p>
+                        </div>
+                        <div>
+                          <span className="text-gray-400 block">Kin Email Address</span>
+                          <p className="text-white font-bold mt-1">{contact?.email || 'sanjay@gmail.com'}</p>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
             </div>
