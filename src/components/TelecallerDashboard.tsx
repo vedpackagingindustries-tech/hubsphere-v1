@@ -599,7 +599,8 @@ export default function TelecallerDashboard({ user, onLogout }: TelecallerDashbo
       setActiveAudio(null);
       return;
     }
-    const audio = new Audio(`/api/calls/recording/${recordingId}`);
+    const url = `/api/calls/recording/${recordingId}?userId=${encodeURIComponent(user?.id || '')}&userRole=${encodeURIComponent(user?.role || '')}`;
+    const audio = new Audio(url);
     audio.onended = () => setPlayingAudioId(null);
     audio.onerror = () => {
       showNotification('Failed to play recording.', 'error');

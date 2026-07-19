@@ -4,7 +4,7 @@
       "id": "u-admin",
       "name": "Admin",
       "email": "contact.grahicsworld@gmail.com",
-      "password": "admin",
+      "password": "$2b$10$QSvg46DIOlUWXNkr4H8Zyeca4FSVouyo4.m8GuniG4r9godu9JFFe",
       "role": "admin",
       "phone": "+919876543210",
       "department": "All",
@@ -115,7 +115,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_sunday_sandwich",
@@ -126,7 +128,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_half_day",
@@ -137,7 +141,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_absent",
@@ -148,7 +154,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_paid_leaves",
@@ -159,7 +167,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_performance_cut",
@@ -170,7 +180,9 @@
       "segment": "All",
       "staffId": "All",
       "enabled": true,
-      "systemRule": true
+      "systemRule": true,
+      "tenantId": "t-default",
+      "companyId": "c-default"
     },
     {
       "id": "rule_late_arrival_t-1784037077811-mrw6",

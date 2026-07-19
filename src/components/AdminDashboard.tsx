@@ -1482,7 +1482,8 @@ export default function AdminDashboard({ user, onLogout, onUserUpdate }: AdminDa
       audioElement.pause();
     }
 
-    const newAudio = new Audio(`/api/calls/recording/${recordingId}`);
+    const url = `/api/calls/recording/${recordingId}?userId=${encodeURIComponent(user?.id || '')}&userRole=${encodeURIComponent(user?.role || '')}`;
+    const newAudio = new Audio(url);
     newAudio.onended = () => setPlayingAudioId(null);
     newAudio.onerror = () => {
       showNotification('Recording failed to load or does not exist', 'error');

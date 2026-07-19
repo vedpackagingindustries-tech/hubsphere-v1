@@ -147,18 +147,24 @@ router.post("/update", authenticateUser, async (req: AuthenticatedRequest, res: 
 });
 
 // GET /api/calls/recording/:filename
-router.get("/recording/:filename", (req, res) => {
+router.get("/recording/:filename", authenticateUser, (req: AuthenticatedRequest, res: Response) => {
   const filename = req.params.filename;
   if (!filename) {
     return res.status(400).json({ error: "Filename is required" });
   }
 
-  let file = path.join(RECORDINGS_DIR, filename);
+  // Prevent path traversal
+  const sanitizedFilename = path.basename(filename);
+  if (sanitizedFilename !== filename) {
+    return res.status(400).json({ error: "Invalid filename format" });
+  }
+
+  let file = path.join(RECORDINGS_DIR, sanitizedFilename);
   let responseMimeType = "";
 
-  if (filename.endsWith(".mp3")) {
+  if (sanitizedFilename.endsWith(".mp3")) {
     responseMimeType = "audio/mpeg";
-  } else if (filename.endsWith(".webm")) {
+  } else if (sanitizedFilename.endsWith(".webm")) {
     responseMimeType = "audio/webm";
   }
 
@@ -166,7 +172,7 @@ router.get("/recording/:filename", (req, res) => {
   if (!fs.existsSync(file)) {
     try {
       const files = fs.readdirSync(RECORDINGS_DIR);
-      const matched = files.find(f => f.includes(filename));
+      const matched = files.find(f => f.includes(sanitizedFilename));
       if (matched) {
         file = path.join(RECORDINGS_DIR, matched);
       }

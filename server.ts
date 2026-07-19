@@ -43,8 +43,34 @@ app.use(requestLogger);
 app.use(express.json({ limit: "2000mb" }));
 app.use(express.urlencoded({ limit: "2000mb", extended: true }));
 
-// Serve recordings statically
-app.use("/recordings", express.static(RECORDINGS_DIR));
+// Securely serve recordings with authentication and path validation
+import { authenticateUser } from "./server/middleware/auth";
+app.get("/recordings/:filename", authenticateUser, (req, res) => {
+  const filename = req.params.filename;
+  if (!filename) {
+    return res.status(400).json({ error: "Filename is required" });
+  }
+
+  // Validate filename to prevent path traversal
+  const sanitizedFilename = path.basename(filename);
+  if (sanitizedFilename !== filename) {
+    return res.status(400).json({ error: "Invalid filename format" });
+  }
+
+  const file = path.join(RECORDINGS_DIR, sanitizedFilename);
+  if (!fs.existsSync(file)) {
+    return res.status(404).json({ error: "Recording file not found" });
+  }
+
+  // Set response headers for audio files
+  if (sanitizedFilename.endsWith(".mp3")) {
+    res.setHeader("Content-Type", "audio/mpeg");
+  } else if (sanitizedFilename.endsWith(".webm")) {
+    res.setHeader("Content-Type", "audio/webm");
+  }
+
+  return res.sendFile(file);
+});
 
 // Mount independent API endpoints (before tenantMiddleware)
 app.use("/api/v1/auth", registrationRouter);

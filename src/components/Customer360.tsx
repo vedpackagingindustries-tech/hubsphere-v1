@@ -509,7 +509,12 @@ export default function Customer360({
       if (audioElement) {
         audioElement.pause();
       }
-      const audio = new Audio(recordingUrl);
+      let finalUrl = recordingUrl;
+      if (currentUser?.id) {
+        const separator = finalUrl.includes('?') ? '&' : '?';
+        finalUrl = `${finalUrl}${separator}userId=${encodeURIComponent(currentUser.id)}&userRole=${encodeURIComponent(currentUser.role || '')}`;
+      }
+      const audio = new Audio(finalUrl);
       audio.play().catch(e => console.error("Audio playback failure", e));
       audio.onended = () => setPlayingAudioId(null);
       setAudioElement(audio);

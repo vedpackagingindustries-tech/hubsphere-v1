@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import path from "path";
 import fs from "fs";
+import bcrypt from "bcryptjs";
 import { readDB, writeDB } from "../utils/fileLock";
 import { authenticateUser, AuthenticatedRequest } from "../middleware/auth";
 import { getHRMLists } from "../services/payroll.service";
@@ -37,7 +38,15 @@ router.post("/backups/verify-recovery", (req: Request, res: Response) => {
   const db = readDB();
   const currentTenantId = (req.headers["x-tenant-id"] as string) || "t-default";
   
-  const isMatch = db.users.some((u: any) => u.tenantId === currentTenantId && u.role === "admin" && u.name.trim().toLowerCase() === name.trim().toLowerCase() && u.password === password);
+  const isMatch = db.users.some((u: any) => {
+    if (u.tenantId !== currentTenantId || u.role !== "admin" || u.name.trim().toLowerCase() !== name.trim().toLowerCase()) {
+      return false;
+    }
+    if (u.password && (u.password.startsWith("$2a$") || u.password.startsWith("$2b$"))) {
+      return bcrypt.compareSync(password, u.password);
+    }
+    return u.password === password;
+  });
   
   db.tenantRecoveryConfigs = db.tenantRecoveryConfigs || {};
   const config = db.tenantRecoveryConfigs[currentTenantId] || db.recoveryConfig || {
@@ -92,7 +101,15 @@ router.post("/backups/export-full", (req: Request, res: Response) => {
   const db = readDB();
   const currentTenantId = (req.headers["x-tenant-id"] as string) || "t-default";
   
-  const isMatch = db.users.some((u: any) => u.tenantId === currentTenantId && u.role === "admin" && u.name.trim().toLowerCase() === name.trim().toLowerCase() && u.password === password);
+  const isMatch = db.users.some((u: any) => {
+    if (u.tenantId !== currentTenantId || u.role !== "admin" || u.name.trim().toLowerCase() !== name.trim().toLowerCase()) {
+      return false;
+    }
+    if (u.password && (u.password.startsWith("$2a$") || u.password.startsWith("$2b$"))) {
+      return bcrypt.compareSync(password, u.password);
+    }
+    return u.password === password;
+  });
   
   db.tenantRecoveryConfigs = db.tenantRecoveryConfigs || {};
   const config = db.tenantRecoveryConfigs[currentTenantId] || db.recoveryConfig || {
@@ -175,7 +192,15 @@ router.post("/backups/restore-full", async (req: Request, res: Response) => {
   const db = readDB();
   const currentTenantId = (req.headers["x-tenant-id"] as string) || "t-default";
   
-  const isMatch = db.users.some((u: any) => u.tenantId === currentTenantId && u.role === "admin" && u.name.trim().toLowerCase() === name.trim().toLowerCase() && u.password === password);
+  const isMatch = db.users.some((u: any) => {
+    if (u.tenantId !== currentTenantId || u.role !== "admin" || u.name.trim().toLowerCase() !== name.trim().toLowerCase()) {
+      return false;
+    }
+    if (u.password && (u.password.startsWith("$2a$") || u.password.startsWith("$2b$"))) {
+      return bcrypt.compareSync(password, u.password);
+    }
+    return u.password === password;
+  });
   
   db.tenantRecoveryConfigs = db.tenantRecoveryConfigs || {};
   const config = db.tenantRecoveryConfigs[currentTenantId] || db.recoveryConfig || {
