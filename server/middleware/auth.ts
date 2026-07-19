@@ -118,14 +118,12 @@ export function authenticateUser(req: AuthenticatedRequest, res: Response, next:
   };
 req.tenantId = req.user.tenantId;
 req.companyId = req.user.companyId;
-console.log("AUTH USER:", req.user);
   next();
 }
 
 export function requireRole(allowedRoles: string[]) {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-    console.log("ROLE CHECK:", req.user);
-    if (!req.user) {
+      if (!req.user) {
       return sendError(res, "Unauthorized: User context missing.", 401);
     }
 
