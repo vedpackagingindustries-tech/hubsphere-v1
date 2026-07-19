@@ -134,15 +134,25 @@ router.post("/login", (req: AuthenticatedRequest, res: Response) => {
 
   if (user) {
     let passwordMatch = false;
-    if (user.password && (user.password.startsWith("$2a$") || user.password.startsWith("$2b$"))) {
-      passwordMatch = bcrypt.compareSync(password, user.password);
+
+    if (
+        user.password &&
+        (
+            user.password.startsWith("$2a$") ||
+            user.password.startsWith("$2b$") ||
+            user.password.startsWith("$2y$")
+        )
+    ) {
+        passwordMatch = bcrypt.compareSync(password, user.password);
     } else {
-      passwordMatch = (user.password === password);
+        // Legacy plaintext passwords are no longer allowed
+        passwordMatch = false;
     }
+
     if (!passwordMatch) {
-      user = undefined;
+        user = undefined;
     }
-  }
+}
 
   // Bulletproof fallback for Main Admin u-admin only if they do not exist in the database yet
   const hasAdminInDB = db.users.some((u: any) => u.id === "u-admin" && !u.deleted && u.tenantId === currentTenantId);
