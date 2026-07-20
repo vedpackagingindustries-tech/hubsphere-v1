@@ -51,7 +51,20 @@ router.post("/add", async (req: AuthenticatedRequest, res: Response) => {
     const caller = db.users.find((u: any) => u.id === finalAssignedTo && u.tenantId === currentTenantId);
     if (caller) assignedName = caller.name;
   }
+// Duplicate Lead Protection
+const duplicateLead = db.leads.find((l: any) =>
+  l.tenantId === currentTenantId &&
+  (
+    (phone && l.phone === phone) ||
+    (email && l.email && l.email.toLowerCase() === email.toLowerCase())
+  )
+);
 
+if (duplicateLead) {
+  return res.status(409).json({
+    error: "Duplicate lead detected. Phone number or Email already exists."
+  });
+}
   const newLead = {
     id: "lead-" + Date.now(),
     name,
