@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { readDB } from "../utils/fileLock";
 import { Logger } from "./logger";
 import { sendError } from "../utils/response";
-
+import jwt from "jsonwebtoken";
 export interface AuthenticatedRequest extends Request {
   user?: {
     id: string;
@@ -40,7 +40,13 @@ export function authenticateUser(req: AuthenticatedRequest, res: Response, next:
   ) {
     return next();
   }
+const authHeader = req.headers.authorization;
 
+if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  Logger.authFailure("anonymous", req.ip || "unknown", "Missing JWT token");
+  return sendError(res, "Authentication required: Missing JWT token.", 401);
+}
+const token = authHeader.split(" ")[1];
   const userId = req.headers["x-user-id"] as string;
   const userRole = req.headers["x-user-role"] as string;
 
@@ -50,11 +56,23 @@ export function authenticateUser(req: AuthenticatedRequest, res: Response, next:
   }
 
   const db = readDB();
+let payload: any;
 
+try {
+  payload = jwt.verify(
+    token,
+    process.env.JWT_SECRET || "HubSphere_Default_JWT_Secret"
+  );
+} catch (err) {
+  Logger.authFailure("anonymous", req.ip || "unknown", "Invalid JWT token");
+  return sendError(res, "Invalid or expired session.", 401);
+}
   // Bulletproof lookup for u-admin fallback
-  let user = db.users.find((u: any) => u.id === userId && !u.deleted);
+  let user = db.users.find(
+  (u: any) => u.id === payload.id && !u.deleted
+);
 
-  if (!user && userId === "u-admin") {
+  if (!user && payload.id === "u-admin") {
     // Fallback if not found in db yet
     user = {
       id: "u-admin",

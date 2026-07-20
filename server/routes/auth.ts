@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { readDB, writeDB } from "../utils/fileLock";
 import { generateEmploymentCode } from "../services/payroll.service";
 import { authenticateUser, AuthenticatedRequest, requireSubAdminOrAdmin } from "../middleware/auth";
@@ -196,9 +197,19 @@ router.post("/login", (req: AuthenticatedRequest, res: Response) => {
       });
     }
   }
-
+const token = jwt.sign(
+  {
+    id: user.id,
+    role: resolvedRole,
+    tenantId: user.tenantId,
+    companyId: user.companyId,
+  },
+  process.env.JWT_SECRET || "HubSphere_Default_JWT_Secret",
+  { expiresIn: "24h" }
+);
   res.json({ 
     success: true, 
+    token,
     user: { 
       id: user.id, 
       name: user.name, 
