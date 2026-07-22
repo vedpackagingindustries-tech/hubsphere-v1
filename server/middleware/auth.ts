@@ -92,10 +92,10 @@ try {
 
   // Validate that the role matches their actual DB-stored role (Never trust the header role blindly)
   const userDbRole = user.role.toLowerCase();
-  const reqHeaderRole = userRole ? userRole.toLowerCase() : "";
+   const reqHeaderRole = userRole ? userRole.toLowerCase() : "";
   let isRoleValid = false;
   if (userRole) {
-    if (userDbRole === reqHeaderRole) {
+ if (userDbRole === reqHeaderRole) {
       isRoleValid = true;
     } else if (userDbRole === "main_admin" && reqHeaderRole === "admin") {
       isRoleValid = true;
