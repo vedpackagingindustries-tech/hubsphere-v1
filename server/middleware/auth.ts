@@ -47,15 +47,9 @@ if (!authHeader || !authHeader.startsWith("Bearer ")) {
   return sendError(res, "Authentication required: Missing JWT token.", 401);
 }
 const token = authHeader.split(" ")[1];
-  const userId = req.headers["x-user-id"] as string;
-  const userRole = req.headers["x-user-role"] as string;
+   const userRole = req.headers["x-user-role"] as string;
 
-  if (!userId) {
-    Logger.authFailure("anonymous", req.ip || "unknown", "Missing X-User-Id header");
-    return sendError(res, "Authentication required: Missing identity header.", 401);
-  }
-
-  const db = readDB();
+   const db = readDB();
 let payload: any;
 
 try {
@@ -87,7 +81,7 @@ try {
   }
 
   if (!user) {
-    Logger.authFailure(userId, req.ip || "unknown", "User not found or deleted");
+    Logger.authFailure(payload.id, req.ip || "unknown", "User not found or deleted");
     return sendError(res, "User profile not found or has been removed.", 401);
   }
 
